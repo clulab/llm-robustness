@@ -6,7 +6,7 @@ from vllm import LLM, SamplingParams
 
 #Qwen/Qwen3-0.6B
 
-model_input_text = 'Hello'
+model_input_text = 'Can you tell me what 4 + 4 is?'
 
 model = LLM(
     model = "Qwen/Qwen2.5-VL-3B-Instruct" , seed =1
