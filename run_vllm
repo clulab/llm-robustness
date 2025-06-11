@@ -10,11 +10,11 @@ model_input_text = 'Hello'
 model = LLM(
     model = "Qwen/Qwen3-0.6B" , seed =1
 )
-sampling_params = SamplingParams(n=1, temperature=0, max_tokens=10, stop=["\n"])
+sampling_params = SamplingParams(n=1, temperature=0, max_tokens=100, stop=["\n"])
 
 
 output =model.generate(model_input_text, sampling_params =sampling_params)
 
 outputs =output[0].outputs[0].text
 
-print(output)
+print(outputs)
