@@ -4,18 +4,34 @@ import torch
 import os
 from vllm import LLM, SamplingParams
 
-#Qwen/Qwen3-0.6B
+#Qwen/Qwen3-0.6B local model to run on compurter
+#Qwen/Qwen2.5-VL-3B-Instruct
 
-model_input_text = 'Hello how is your day today?'
+with open('/Users/danielrivera/School/llm-robustness/sentiment_analysis.json', 'r') as file:
+    
+   
+    data = json.load(file)
+
+    #data_fixed = data.strip('persona')
+
+data['query'] = data['query'].replace('<input>', 'I was able to take this and then was able to sleep well for the first time in a while')
+
+
+
+
+
+
 
 model = LLM(
-    model = "Qwen/Qwen2.5-VL-3B-Instruct" , seed =1
-)
-sampling_params = SamplingParams(n=1, temperature=0, max_tokens=100, stop=["\n"])
+        model = "Qwen/Qwen3-0.6B" , seed =1
+        )
+sampling_params = SamplingParams(n=1, temperature=0, max_tokens=10, stop=["\n"])
 
 
-output =model.generate(model_input_text, sampling_params =sampling_params)
+output =model.generate(data, sampling_params =sampling_params)
 
 outputs =output[0].outputs[0].text
 
 print(outputs)
+
+#print(data)

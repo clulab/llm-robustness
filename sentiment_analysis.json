@@ -3,7 +3,7 @@
     "task": "Classify the sentiment of the text given as input.",
     "format": "The outputs must be only POSITIVE, NEGATIVE or NEUTRAL.",
     "examples": [
-        "INPUT: Worst bc out of all three I have tried. I switched because this pill was much cheaper, now I know why.\nOUTPUT: NEGATIVE\n",
+        "INPUT: Worst bc out of all three I have tried. I switched because this pill was much cheaper, now I know why.\n OUTPUT: NEGATIVE \n",
         "INPUT: Loestrin 24 was recommended to me by my doctor. I took it for 7 months. I had no physical side effects, just a bit moody in the first week.\nOUTPUT: NEUTRAL\n",
         "INPUT: I took Elavil for two years and slept like a champ! I tried everything else on the market, prescription, herbal, over the counter and nothing worked like this\ndid.\nOUTPUT: POSITIVE\n"
     ],
