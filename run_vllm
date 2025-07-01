@@ -2,36 +2,56 @@ import json
 import copy
 import torch 
 import os
+from itertools import permutations 
 from vllm import LLM, SamplingParams
 
 #Qwen/Qwen3-0.6B local model to run on compurter
 #Qwen/Qwen2.5-VL-3B-Instruct
 
-with open('/Users/danielrivera/School/llm-robustness/sentiment_analysis.json', 'r') as file:
+# Open the file
+with open('/Users/danielrivera/School/llm-robustness/sentiment_analysis.json', 'r+') as file:
     
-   
+   #load the file as a dic
     data = json.load(file)
 
-    #data_fixed = data.strip('persona')
+# We change the input of the file
+data['query'] = data['query'].replace('<input>', 'This is where the Input would go')
 
-data['query'] = data['query'].replace('<input>', 'I was able to take this and then was able to sleep well for the first time in a while')
+# Grabs all the information from the dic and turns it all into strings
+persona_text = data.get("persona")
+task_text = data.get("task")
+format_text =data.get("format")
+example_text = data.get("examples")
+query_text = data.get("query")
 
+#force combines all of the string in the example text
+example_text = "\n".join(example_text)
 
+combined_string = persona_text + "\n" + task_text + "\n" + format_text + "\n" + example_text + "\n" + query_text 
 
+print(combined_string)
 
-
-
+# print(persona_text)
+# print("\n")
+# print(task_text)
+# print("\n")
+# print(format_text)
+# print("\n")
+# print(example_text)
+# print("\n")
+# print(query_text)
+# print("\n")
+# print(type(example_text))
 
 model = LLM(
-        model = "Qwen/Qwen3-0.6B" , seed =1
+        model = "Qwen/Qwen3-0.6B" , seed =1 , max_model_len=37440
         )
-sampling_params = SamplingParams(n=1, temperature=0, max_tokens=10, stop=["\n"])
+sampling_params = SamplingParams(n=1, temperature=0, max_tokens=100, stop=["\n"])
 
 
-output =model.generate(data, sampling_params =sampling_params)
+output =model.generate(combined_string , sampling_params =sampling_params)
 
 outputs =output[0].outputs[0].text
 
 print(outputs)
 
-#print(data)
