@@ -24,13 +24,16 @@ format_text =data.get("format")
 example_text = data.get("examples")
 query_text = data.get("query")
 
-#force combines all of the string in the example text
+#force combines all of the string in the example text so it no longer a list
 example_text = "\n".join(example_text)
 
+#combined all the strings together
 combined_string = persona_text + "\n" + task_text + "\n" + format_text + "\n" + example_text + "\n" + query_text 
+
 
 print(combined_string)
 
+#debugging lines
 # print(persona_text)
 # print("\n")
 # print(task_text)
