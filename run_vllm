@@ -15,7 +15,7 @@ with open('/Users/danielrivera/School/llm-robustness/sentiment_analysis.json', '
     data = json.load(file)
 
 # We change the input of the file
-data['query'] = data['query'].replace('<input>', 'This is where the Input would go')
+data['query'] = data['query'].replace('<input>', 'These pills are having no effect on me at all')
 
 # Grabs all the information from the dic and turns it all into strings
 persona_text = data.get("persona")
@@ -24,37 +24,42 @@ format_text =data.get("format")
 example_text = data.get("examples")
 query_text = data.get("query")
 
-#force combines all of the string in the example text so it no longer a list
-example_text = "\n".join(example_text)
 
-#combined all the strings together
-combined_string = persona_text + "\n" + task_text + "\n" + format_text + "\n" + example_text + "\n" + query_text 
+example_text = '\n'.join(example_text)
+DATA = {
+        "p": persona_text,
+        "t": task_text,
+        "f": format_text,
+        "e": example_text,
+        "q": query_text
+
+}
+
+permutation = input("Pick the order of the permutation \nOptions are: \np: persona, \nt: task, \nf: format, \ne: example, \nq: query \n(ex:ptfeq): \n").strip().lower()
+
+combined_string = ''.join([DATA[ch] for ch in permutation])
 
 
-print(combined_string)
-
-#debugging lines
-# print(persona_text)
-# print("\n")
-# print(task_text)
-# print("\n")
-# print(format_text)
-# print("\n")
-# print(example_text)
-# print("\n")
-# print(query_text)
-# print("\n")
-# print(type(example_text))
 
 model = LLM(
         model = "Qwen/Qwen3-0.6B" , seed =1 , max_model_len=37440
         )
 sampling_params = SamplingParams(n=1, temperature=0, max_tokens=100, stop=["\n"])
 
+#for i(len of the input json) and have the ai model re running it non stop but having it 
 
+#load the data here mess with the input and then do a for a loop so it keep going thru the generate part then also have it output it as a json
 output =model.generate(combined_string , sampling_params =sampling_params)
 
 outputs =output[0].outputs[0].text
 
-print(outputs)
+#print(type((outputs)))
 
+total_outputs = combined_string + outputs
+total_outputs = json.dumps(total_outputs)
+print('\n')
+print(total_outputs)
+with open("output.json","w", encoding= "utf-8") as json_file:
+        json_file.write(total_outputs)
+        #json.dump(combined_string, json_file, indent= 4, ensure_ascii=False)
+        #json.dump(outputs,json_file)

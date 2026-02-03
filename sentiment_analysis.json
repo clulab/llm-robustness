@@ -5,7 +5,7 @@
     "examples": [
         "INPUT: Worst bc out of all three I have tried. I switched because this pill was much cheaper, now I know why.\n OUTPUT: NEGATIVE \n",
         "INPUT: Loestrin 24 was recommended to me by my doctor. I took it for 7 months. I had no physical side effects, just a bit moody in the first week.\nOUTPUT: NEUTRAL\n",
-        "INPUT: I took Elavil for two years and slept like a champ! I tried everything else on the market, prescription, herbal, over the counter and nothing worked like this\ndid.\nOUTPUT: POSITIVE\n"
+        "INPUT: I took Elavil for two years and slept like a champ! I tried everything else on the market, prescription, herbal, over the counter and nothing worked like this did.\nOUTPUT: POSITIVE\n"
     ],
-    "query": "INPUT: <input>\nOUTPUT: "
+    "query": "INPUT: <input> \nOUTPUT: "
 }
