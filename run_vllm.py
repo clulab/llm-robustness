@@ -2,14 +2,14 @@ import json
 import copy
 import torch 
 import os
-from itertools import permutations 
+import yaml
 from vllm import LLM, SamplingParams
 
 #Qwen/Qwen3-0.6B local model to run on compurter
 #Qwen/Qwen2.5-VL-3B-Instruct
 
 # Open the file
-with open('/Users/danielrivera/School/llm-robustness/sentiment_analysis.json', 'r+') as file:
+with open('sentiment_analysis.json', 'r+') as file:
     
    #load the file as a dic
     data = json.load(file)
@@ -35,21 +35,24 @@ DATA = {
 
 }
 
-permutation = input("Pick the order of the permutation \nOptions are: \np: persona, \nt: task, \nf: format, \ne: example, \nq: query \n(ex:ptfeq): \n").strip().lower()
+config = yaml.safe_load(open('Config.yaml'))
 
-combined_string = ''.join([DATA[ch] for ch in permutation])
+
+#permutation_py = input(config['permutation']).strip().lower()
+
+#combined_string = ''.join([DATA[ch] for ch in permutation_py])
 
 
 
 model = LLM(
-        model = "Qwen/Qwen3-0.6B" , seed =1 , max_model_len=37440
+        model = config['model'], seed =1 , max_model_len=37440
         )
 sampling_params = SamplingParams(n=1, temperature=0, max_tokens=100, stop=["\n"])
 
 #for i(len of the input json) and have the ai model re running it non stop but having it 
 
 #load the data here mess with the input and then do a for a loop so it keep going thru the generate part then also have it output it as a json
-output =model.generate(combined_string , sampling_params =sampling_params)
+output =model.generate(config['permutation'] , sampling_params =sampling_params)
 
 outputs =output[0].outputs[0].text
 
