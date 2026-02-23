@@ -1,7 +1,7 @@
 {
-    "persona": "You are an expert in sentiment analysis in natural language.",
-    "task": "Classify the sentiment of the text given as input.",
-    "format": "The outputs must be only POSITIVE, NEGATIVE or NEUTRAL.",
+    "persona": "You are an expert in sentiment analysis in natural language.\n ",
+    "task": "Classify the sentiment of the text given as input.\n ",
+    "format": "The outputs must be only POSITIVE, NEGATIVE or NEUTRAL.\n ",
     "examples": [
         "INPUT: Worst bc out of all three I have tried. I switched because this pill was much cheaper, now I know why.\n OUTPUT: NEGATIVE \n",
         "INPUT: Loestrin 24 was recommended to me by my doctor. I took it for 7 months. I had no physical side effects, just a bit moody in the first week.\nOUTPUT: NEUTRAL\n",
