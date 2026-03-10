@@ -1,6 +1,5 @@
 import json 
 import yaml
-import os 
 from vllm import LLM, SamplingParams
 
 #Qwen/Qwen3-0.6B local model to run on compurter
