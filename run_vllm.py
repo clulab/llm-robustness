@@ -52,7 +52,7 @@ def main():
         sampling_params = SamplingParams(n=1, temperature=0, max_tokens=4)
 
 
-        for item in data[0:10]:
+        for item in data:
                 if item['id'] == 80454:
                        continue
                 #print(item['input'])
