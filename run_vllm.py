@@ -1,6 +1,10 @@
+import argparse
+from email import parser
 import json 
 import yaml
 from vllm import LLM, SamplingParams
+import vllm.envs as envs
+envs.VLLM_HOST_IP="0.0.0.0" or "127.0.0.1"
 
 #Qwen/Qwen3-0.6B local model to run on compurter
 #Qwen/Qwen2.5-VL-3B-Instruct
@@ -30,9 +34,17 @@ def main():
         
         }
 
-        config = yaml.safe_load(open('qwen_ptfeq.yaml'))
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-c', '--config', default='qwen_ptfeq.yaml')
+        args = parser.parse_args()
+        with open(args.config) as f:
+          config = yaml.safe_load(f)
 
-    
+
+
+
+
+        print(config['permutation'])
 
         with open(config['input']) as f:
                 data = [json.loads(line) for line in f if line.strip()]
@@ -52,7 +64,7 @@ def main():
         sampling_params = SamplingParams(n=1, temperature=0, max_tokens=4)
 
 
-        for item in data:
+        for item in data[0:10]:
                 if item['id'] == 80454:
                        continue
                 #print(item['input'])
