@@ -3,8 +3,10 @@ from email import parser
 import json 
 import yaml
 from vllm import LLM, SamplingParams
-import vllm.envs as envs
-envs.VLLM_HOST_IP="0.0.0.0" or "127.0.0.1"
+
+#this is for the local machine, if you want to run it on the server, leave as is
+#import vllm.envs as envs
+#envs.VLLM_HOST_IP="0.0.0.0" or "127.0.0.1"
 
 #Qwen/Qwen3-0.6B local model to run on compurter
 #Qwen/Qwen2.5-VL-3B-Instruct
