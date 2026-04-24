@@ -1,0 +1,3 @@
+'model': 'allenai/OLMo-2-0425-1B-Instruct'
+'permutation': 'tepfq'
+'input': '/media/volume/llm-robustness-data/datasets/ner/cdr/toy.jsonl'

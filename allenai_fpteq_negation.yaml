@@ -1,0 +1,3 @@
+'model': 'allenai/OLMo-2-0425-1B-Instruct'
+'permutation': 'fpteq'
+'input': '/media/volume/llm-robustness-data/datasets/negation/i2b2/toy.jsonl'

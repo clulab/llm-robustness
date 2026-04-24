@@ -1,0 +1,3 @@
+'model': 'Qwen/Qwen3-1.7B'
+'permutation': 'pfteq'
+'input': '/media/volume/llm-robustness-data/datasets/ner/cdr/toy.jsonl'
