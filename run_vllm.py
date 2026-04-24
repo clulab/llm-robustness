@@ -67,8 +67,9 @@ def main():
 
 
         for item in data:
-                if item['id'] == 80454:
-                       continue
+                if item['input'] == "/media/volume/llm-robustness-data/datasets/sentiment-analysis/drugCom/drugCom_toy.jsonl":
+                        if item['id'] == 80454:
+                                continue
                 #print(item['input'])
                 #print(combined_string.replace('<input>', item['input']))
                 output =model.generate(combined_string.replace('<input>', item['input']) , sampling_params =sampling_params)
