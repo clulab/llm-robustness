@@ -1,0 +1,4 @@
+'model': 'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
+'permutation': 'tepfq'
+'input': '/media/volume/llm-robustness-data/datasets/sentiment-analysis/drugCom/drugCom_toy.jsonl'
+'prompt': '/media/volume/llm-robustness-data/prompts/sentiment_analysis.json'

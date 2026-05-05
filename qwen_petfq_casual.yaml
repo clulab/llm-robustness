@@ -1,3 +1,0 @@
-'model': 'Qwen/Qwen3-1.7B'
-'permutation': 'petfq'
-'input': '/media/volume/llm-robustness-data/datasets/causal/press/toy.jsonl'

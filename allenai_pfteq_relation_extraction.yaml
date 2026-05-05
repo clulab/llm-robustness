@@ -1,3 +1,0 @@
-'model': 'allenai/OLMo-2-0425-1B-Instruct'
-'permutation': 'pfteq'
-'input': '/media/volume/llm-robustness-data/datasets/relation_extraction/made/made_toy.jsonl'

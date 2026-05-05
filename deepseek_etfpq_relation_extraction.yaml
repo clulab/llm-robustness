@@ -1,3 +1,0 @@
-'model': 'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
-'permutation': 'etfpq'
-'input': '/media/volume/llm-robustness-data/datasets/relation_extraction/made/made_toy.jsonl'

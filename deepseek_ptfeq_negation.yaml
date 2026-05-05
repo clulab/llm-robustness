@@ -1,3 +1,4 @@
 'model': 'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
 'permutation': 'ptfeq'
 'input': '/media/volume/llm-robustness-data/datasets/negation/i2b2/toy.jsonl'
+'prompt': '/media/volume/llm-robustness-data/prompts/negation.json'

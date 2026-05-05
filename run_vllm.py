@@ -14,7 +14,7 @@ from vllm import LLM, SamplingParams
 
 def main():
         # Open the file
-        with open('sentiment_analysis.json', 'r+') as file:
+        with open(config['prompt'], 'r+') as file:
          #load the file as a dic
                 data = json.load(file)
 
@@ -88,4 +88,4 @@ def main():
 if __name__ == "__main__":
         main()
 
-#to-do 
+

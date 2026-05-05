@@ -1,3 +1,4 @@
 'model': 'meta-llama/Llama-3.2-1B'
 'permutation': 'tepfq'
 'input': '/media/volume/llm-robustness-data/datasets/negation/i2b2/toy.jsonl'
+'prompt': '/media/volume/llm-robustness-data/prompts/negation.json'

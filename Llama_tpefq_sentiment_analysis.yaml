@@ -1,0 +1,4 @@
+'model': 'meta-llama/Llama-3.2-1B'
+'permutation': 'tpefq'
+'input': '/media/volume/llm-robustness-data/datasets/sentiment-analysis/drugCom/drugCom_toy.jsonl'
+'prompt': '/media/volume/llm-robustness-data/prompts/sentiment_analysis.json'
