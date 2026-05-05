@@ -13,6 +13,14 @@ from vllm import LLM, SamplingParams
 
 
 def main():
+
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-c', '--config', default='qwen_ptfeq.yaml')
+        args = parser.parse_args()
+        with open(args.config) as f:
+          config = yaml.safe_load(f)
+
+
         # Open the file
         with open(config['prompt'], 'r+') as file:
          #load the file as a dic
@@ -35,16 +43,6 @@ def main():
                 "q": query_text
         
         }
-
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-c', '--config', default='qwen_ptfeq.yaml')
-        args = parser.parse_args()
-        with open(args.config) as f:
-          config = yaml.safe_load(f)
-
-
-
-
 
         print(config['permutation'])
 
