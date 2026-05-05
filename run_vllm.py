@@ -59,7 +59,7 @@ def main():
         #print(config['permutation'])
 
         model = LLM(
-                model = config['model'], seed =1 , max_model_len=2048, gpu_memory_utilization=0.8
+                model = config['model'], seed =1 , max_model_len=2048, gpu_memory_utilization=0.7
                 )
         sampling_params = SamplingParams(n=1, temperature=0, max_tokens=4)
 
