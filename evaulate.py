@@ -29,8 +29,11 @@ y_pred =[]
 for item in data:
     gold_answer = item['gold_answer'].lower()
     y_true.append(gold_answer)
-    y_pred.append(item['output'].split()[0].lower())  # Assuming the model's output is a string and we want the first word as the prediction
-
+    if item['output'] is not None:
+        y_pred.append(item['output'].split()[0].lower())
+    else:
+        y_pred.append("none")  # or "unknown", or whatever placeholder makes sense for your eval
+    
 
 outputs =[]
 accuracy = accuracy_score(y_true, y_pred)
