@@ -2,3 +2,4 @@
 'permutation': 'fpetq'
 'input': '/media/volume/llm-robustness-data/datasets/causal/press/toy.jsonl'
 'prompt': '/media/volume/llm-robustness-data/prompts/causal.json'
+'dataset': 'causal'

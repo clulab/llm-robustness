@@ -1,6 +1,8 @@
 import argparse
 from email import parser
-import json 
+import json
+import re 
+import regex
 import yaml
 from vllm import LLM, SamplingParams
 
@@ -73,11 +75,33 @@ def main():
                 #print(combined_string.replace('<input>', item['input']))
                 output =model.generate(combined_string.replace('<input>', item['input']) , sampling_params =sampling_params)
 
+                #This pulls out the start of the output from the llm model
                 outputs =output[0].outputs[0].text
 
-                new_outputs = {"id": item['id'], "input": item['input'], "gold_answer": item['gold_answer'], "output": outputs}
-                
-                with open("output.json", "a", encoding="utf-8") as f:
+                if config['dataset'] == 'causal':
+                        regex = r'No claim|Correlational|Causal'
+                        regex_match = re.search(regex, outputs)
+                        output_value = regex_match.group() if regex_match else None
+
+                if config['dataset'] == 'sentiment_analysis':
+                        regex = r'POSITIVE|NEGATIVE|NEUTRAL'
+                        regex_match = re.search(regex, outputs)
+                        output_value = regex_match.group() if regex_match else None
+                if config['dataset'] == 'negation':
+                        regex = r'No|Yes'
+                        regex_match = re.search(regex, outputs)
+                        output_value = regex_match.group() if regex_match else None
+
+        new_outputs = {
+                "id": item['id'],
+                "input": item['input'],
+                "gold_answer": item['gold_answer'],
+                "output": output_value,
+        }
+
+
+
+        with open("output.json", "a", encoding="utf-8") as f:
                         json.dump(new_outputs, f)
                         f.write("\n")
              
