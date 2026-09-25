@@ -30,8 +30,10 @@ for item in data:
     gold_answer = item['gold_answer'].lower()
     y_true.append(gold_answer)
     y_pred.append(item['output'].lower())  
-    
+
 outputs =[]
+print(y_true)
+print(y_pred)
 accuracy = accuracy_score(y_true, y_pred)
 print(f"Accuracy: {accuracy:.3f}")
 outputs.append({"permutation": dataInformation['permutation'], "model": dataInformation['model'], "accuracy": accuracy, "dataset": dataInformation['input']})

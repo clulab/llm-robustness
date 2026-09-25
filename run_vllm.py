@@ -91,7 +91,7 @@ def main():
                         regex = r'No|Yes'
                         regex_match = re.search(regex, outputs)
                         output_value = regex_match.group() if regex_match else outputs
-
+        print(f"Generated output for item {item['id']}: {output_value}")
         new_outputs = {
                 "id": item['id'],
                 "input": item['input'],
