@@ -81,16 +81,16 @@ def main():
                 if config['dataset'] == 'causal':
                         regex = r'No claim|Correlational|Causal'
                         regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else None
+                        output_value = regex_match.group() if regex_match else outputs
 
                 if config['dataset'] == 'sentiment_analysis':
                         regex = r'POSITIVE|NEGATIVE|NEUTRAL'
                         regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else None
+                        output_value = regex_match.group() if regex_match else outputs
                 if config['dataset'] == 'negation':
                         regex = r'No|Yes'
                         regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else None
+                        output_value = regex_match.group() if regex_match else outputs
 
         new_outputs = {
                 "id": item['id'],
