@@ -73,24 +73,24 @@ def main():
                                 continue
                 #print(item['input'])
                 #print(combined_string.replace('<input>', item['input']))
-                output =model.generate(combined_string.replace('<input>', item['input']) , sampling_params =sampling_params)
+        output =model.generate(combined_string.replace('<input>', item['input']) , sampling_params =sampling_params)
 
-                #This pulls out the start of the output from the llm model
-                outputs =output[0].outputs[0].text
+        #This pulls out the start of the output from the llm model
+        outputs =output[0].outputs[0].text
 
-                if config['dataset'] == 'causal':
-                        regex = r'No claim|Correlational|Causal'
-                        regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else outputs
+        if config['dataset'] == 'causal':
+                regex = r'No claim|Correlational|Causal'
+                regex_match = re.search(regex, outputs)
+                output_value = regex_match.group() if regex_match else outputs
 
-                if config['dataset'] == 'sentiment_analysis':
-                        regex = r'POSITIVE|NEGATIVE|NEUTRAL'
-                        regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else outputs
-                if config['dataset'] == 'negation':
-                        regex = r'No|Yes'
-                        regex_match = re.search(regex, outputs)
-                        output_value = regex_match.group() if regex_match else outputs
+        if config['dataset'] == 'sentiment_analysis':
+                regex = r'POSITIVE|NEGATIVE|NEUTRAL'
+                regex_match = re.search(regex, outputs)
+                output_value = regex_match.group() if regex_match else outputs
+        if config['dataset'] == 'negation':
+                regex = r'No|Yes'
+                regex_match = re.search(regex, outputs)
+                output_value = regex_match.group() if regex_match else outputs
         print(f"Generated output for item {item['id']}: {output_value}")
         new_outputs = {
                 "id": item['id'],
