@@ -32,8 +32,6 @@ for item in data:
     y_pred.append(item['output'].lower())  
 
 outputs =[]
-print(y_true)
-print(y_pred)
 accuracy = accuracy_score(y_true, y_pred)
 print(f"Accuracy: {accuracy:.3f}")
 outputs.append({"permutation": dataInformation['permutation'], "model": dataInformation['model'], "accuracy": accuracy, "dataset": dataInformation['input']})

@@ -79,26 +79,26 @@ def main():
                 outputs =output[0].outputs[0].text
 
                 if config['dataset'] == 'causal':
-                        regex = r'No claim|Correlational|Causal'
+                        regex = r'No claim|Correlational|Causal|no claim|correlational|causal'
                         regex_match = re.search(regex, outputs)
                         output_value = regex_match.group() if regex_match else outputs
 
                 if config['dataset'] == 'sentiment_analysis':
-                        regex = r'POSITIVE|NEGATIVE|NEUTRAL'
+                        regex = r'POSITIVE|NEGATIVE|NEUTRAL|positiv|negativ|neutral'
                         regex_match = re.search(regex, outputs)
                         output_value = regex_match.group() if regex_match else outputs
                 if config['dataset'] == 'negation':
-                        regex = r'No|Yes'
+                        regex = r'No|Yes|no|yes'
                         regex_match = re.search(regex, outputs)
                         output_value = regex_match.group() if regex_match else outputs
-                print(f"Generated output for item {item['id']}: {output_value}")
+              
                 new_outputs = {
                 "id": item['id'],
                 "input": item['input'],
                 "gold_answer": item['gold_answer'],
                 "output": output_value,
                 }
-        with open("output.json", "a", encoding="utf-8") as f:
+                with open("output.json", "a", encoding="utf-8") as f:
                         json.dump(new_outputs, f)
                         f.write("\n")
              
