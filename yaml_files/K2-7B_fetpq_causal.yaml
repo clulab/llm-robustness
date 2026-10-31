@@ -1,5 +1,5 @@
 'model': 'IFM/K2-Horizon-7B'
 'permutation': 'fetpq'
-'input': '/media/volume/llm-robustness-data/datasets/causal/press/toy1000.jsonl'
+'input': '/media/volume/llm-robustness-data/datasets/causal/pubmed/toy1000.jsonl'
 'prompt': '/media/volume/llm-robustness-data/prompts/causal.json'
 'dataset': 'causal'

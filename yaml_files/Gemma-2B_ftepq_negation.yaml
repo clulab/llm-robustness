@@ -1,5 +1,5 @@
 'model': 'google/gemma-4-E2B-it'
 'permutation': 'ftepq'
-'input': '/media/volume/llm-robustness-data/datasets/negation/i2b2/toy1000.jsonl'
+'input': '/media/volume/llm-robustness-data/datasets/negation/mimic/toy1000.jsonl'
 'prompt': '/media/volume/llm-robustness-data/prompts/negation.json'
 'dataset': 'negation'
