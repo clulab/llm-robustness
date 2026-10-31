@@ -1,0 +1,5 @@
+'model': 'google/gemma-4-12B-it'
+'permutation': 'ptfeq'
+'input': '/media/volume/llm-robustness-data/datasets/ner/ehealth/toy1000.json'
+'prompt': '/media/volume/llm-robustness-data/prompts/ner.json'
+'dataset': 'ner'

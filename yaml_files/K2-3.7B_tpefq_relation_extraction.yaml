@@ -1,0 +1,5 @@
+'model': 'IFM/K2-Horizon-3.7B'
+'permutation': 'tpefq'
+'input': '/media/volume/llm-robustness-data/datasets/relation_extraction/made/toy1000.jsonl'
+'prompt': '/media/volume/llm-robustness-data/prompts/relation_extraction.json'
+'dataset': 'relation_extraction'
