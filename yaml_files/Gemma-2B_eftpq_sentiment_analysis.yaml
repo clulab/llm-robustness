@@ -1,5 +1,5 @@
 'model': 'google/gemma-4-E2B-it'
 'permutation': 'eftpq'
-'input': '/media/volume/llm-robustness-data/datasets/sentiment-analysis/drugCom/drugCom_toy.jsonl'
+'input': '/media/volume/llm-robustness-data/datasets/sentiment-analysis/drugCom/toy1000.jsonl'
 'prompt': '/media/volume/llm-robustness-data/prompts/sentiment_analysis.json'
 'dataset': 'sentiment_analysis'
