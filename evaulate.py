@@ -1,3 +1,4 @@
+from numpy import isin
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import json
 import argparse
@@ -11,6 +12,12 @@ def negation_performance(labels_true, labels_pred, average=None):
 
     return {"f1": f1, "precision": precision, "recall": recall}
 
+def ner_json(data):
+    if isinstance(data,np.ndarray):
+        return data.tolist()
+    if isinstance(data, np.generic):
+        return data.item()
+    return data
 
 
 
