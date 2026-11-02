@@ -62,7 +62,8 @@ def main():
 
         model = LLM(
                 model = config['model'], seed =1 , max_model_len=2048, gpu_memory_utilization=0.7, 
-                download_dir='/media/volume/llm-cache/vllm/'
+                download_dir='/media/volume/llm-cache/vllm/',
+                trust_remote_code=True,
                 )
         sampling_params = SamplingParams(n=1, temperature=0, max_tokens=10)
 
@@ -91,6 +92,10 @@ def main():
                         regex = r'No|Yes|no|yes'
                         regex_match = re.search(regex, outputs)
                         output_value = regex_match.group() if regex_match else outputs
+                if config['dataset'] == 'ner':
+                        output_value = outputs
+                if config['dataset'] == 'relation_extraction':
+                        output_value = outputs
               
                 new_outputs = {
                 "id": item['id'],
