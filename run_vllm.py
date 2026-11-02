@@ -46,8 +46,6 @@ def main():
         
         }
 
-        print(config['permutation'])
-
         with open(config['input']) as f:
                 data = [json.loads(line) for line in f if line.strip()]
 

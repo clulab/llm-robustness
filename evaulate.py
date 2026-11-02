@@ -71,7 +71,7 @@ else:
 
 
 with open("eval_output.json", "a", encoding="utf-8") as f:
-    json.dump(outputs, f)
+    json.dump(outputs, f, default=ner_json)
     f.write("\n")  
 
 
