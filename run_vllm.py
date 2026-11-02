@@ -98,7 +98,6 @@ def main():
                         output_value = outputs
               
                 new_outputs = {
-                "id": item['id'],
                 "input": item['input'],
                 "gold_answer": item['gold_answer'],
                 "output": output_value,
