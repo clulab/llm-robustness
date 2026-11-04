@@ -46,7 +46,6 @@ def negation_performance(data: List[dict]) -> tuple[dict,list] :
     fn += sample_fn
 
     prediction_entry = {
-        'question': item['question'],
         'gold_answer': item['gold_answer'],
         'predicted_answer': item['output'],
         'processed_gold_answer': list(gold),
@@ -63,7 +62,6 @@ def negation_performance(data: List[dict]) -> tuple[dict,list] :
         'precision': round(precision, 4),
         'recall': round(recall, 4),
         'f1_score': round(f1, 4),
-        'predictions': predictions #dont know if needed
     }
 
 
