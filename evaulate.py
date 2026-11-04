@@ -1,3 +1,4 @@
+import re
 import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import json
@@ -5,21 +6,64 @@ import argparse
 
 import yaml
 
+
+
+def postprocess_entities(text: str ) -> set:
+    match = re.search(r'<output>(.*?)</output>', text, re.DOTALL)
+    if match: 
+        content = match.group(1).strip()
+        entities = {item.strip() for item in content.split('\n') if item.strip()}
+        return entities
+
+
+    return set()
+
+
+
 def negation_performance(labels_true, labels_pred, average=None):
-    f1 = f1_score(y_true=labels_true, y_pred=labels_pred, average=average)
-    precision = precision_score(y_true=labels_true, y_pred=labels_pred, average=average)
-    recall = recall_score(y_true=labels_true, y_pred=labels_pred, average=average)
+ tp = 0 
+ fp = 0
+ fn = 0
+ predictions =[]
 
-    return {"f1": f1, "precision": precision, "recall": recall}
+ for item in data:
+    gold = postprocess_entities(item['gold_answer'])
+    predicted = postprocess_entities(item['output'])
 
-def ner_json(data):
-    if isinstance(data,np.ndarray):
-        return data.tolist()
-    if isinstance(data, np.generic):
-        return data.item()
-    return data
+    sample_tp = len(gold & predicted)
+    sample_fp = len(predicted - gold)
+    sample_fn = len(gold - predicted)
+
+    sample_precision = sample_tp / (sample_tp + sample_fp) if (sample_tp + sample_fp) > 0 else 0
+    sample_recall = sample_tp / (sample_tp + sample_fn) if (sample_tp + sample_fn) > 0 else 0
+    sample_f1 = 2 * sample_precision * sample_recall / (sample_precision + sample_recall) if (sample_precision + sample_recall) > 0 else 0
 
 
+
+    tp += sample_tp
+    fp += sample_fp
+    fn += sample_fn
+
+    prediction_entry = {
+        'question': item['question'],
+        'gold_answer': item['gold_answer'],
+        'predicted_answer': item['output'],
+        'processed_gold_answer': list(gold),
+        'processed_predicted_answer': list(predicted),
+        'f1_score': sample_f1
+    }
+    predictions.append(prediction_entry)
+
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+
+    return {
+        'precision': round(precision, 4),
+        'recall': round(recall, 4),
+        'f1_score': round(f1, 4),
+        'predictions': predictions #dont know if needed
+    }
 
 
 parser = argparse.ArgumentParser()
@@ -39,17 +83,11 @@ with open("output.json", "r") as file:
 
 
 if( dataInformation['dataset'] == "ner"):
-    gold_binary =[]
-    pred_binary =[]
-    for item in data:
-        gold_binary.append(1 if item['gold_answer'].lower().strip() == 'yes' else 0)
-        pred_binary.append(1 if item['output'].lower().strip() == 'yes' else 0)
-
-    neg_metrics = negation_performance(gold_binary, pred_binary)
+    neg_metrics = negation_performance(data)
 
     outputs = []
-    accuracy = accuracy_score(gold_binary, pred_binary)
-    outputs.append({"permutation": dataInformation['permutation'], "model": dataInformation['model'], "precision": neg_metrics['precision'], "dataset": dataInformation['input'], "negation_metrics": neg_metrics})
+    accuracy = neg_metrics['f1_score']
+    outputs.append({"permutation": dataInformation['permutation'], "model": dataInformation['model'], "precision": neg_metrics['precision'], "dataset": dataInformation['input'], "negation_metrics": neg_metrics, "recall": neg_metrics['recall'], "f1_score": neg_metrics['f1_score']})
 
 else:
     y_true =[]
@@ -71,7 +109,7 @@ else:
 
 
 with open("eval_output.json", "a", encoding="utf-8") as f:
-    json.dump(outputs, f, default=ner_json)
+    json.dump(outputs, f)
     f.write("\n")  
 
 
