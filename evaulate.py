@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import json
 import argparse
+from typing import List
 
 import yaml
 
@@ -20,7 +21,7 @@ def postprocess_entities(text: str ) -> set:
 
 
 
-def negation_performance(labels_true, labels_pred, average=None):
+def negation_performance(data: List[dict]) -> tuple[dict,list] :
  tp = 0 
  fp = 0
  fn = 0
